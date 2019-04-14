@@ -75,7 +75,7 @@ export default {
 
 <style scoped>
   .devices-list {
-    padding: 0 50px;
+    /* padding: 0 50px; */
   }
 
   .devices-list div {

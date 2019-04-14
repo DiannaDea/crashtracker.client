@@ -4,6 +4,8 @@ import * as mutationTypes from '../mutation-types';
 
 const state = {
   all: [],
+  curDevice: null,
+  curDeviceSectors: [],
 };
 
 const getters = {};
@@ -13,12 +15,28 @@ const actions = {
     const devices = await devicesAPI.getAllDevices();
     commit(mutationTypes.SET_USER_DEVICES, devices);
   },
+  async [actionTypes.GET_CURRENT_DEVICE]({ commit }, { deviceId }) {
+    const curDevice = await devicesAPI.getOneDevice(deviceId);
+    commit(mutationTypes.SET_CURRENT_DEVICE, curDevice);
+  },
+  async [actionTypes.GET_CURRENT_DEVICE_SECTORS]({ commit }, { deviceId }) {
+    const curSectors = await devicesAPI.getDeviceSectors(deviceId);
+    commit(mutationTypes.SET_CURRENT_DEVICE_SECTORS, curSectors);
+  },
 };
 
 const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_USER_DEVICES](state, devices) {
     state.all = devices;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_CURRENT_DEVICE](state, device) {
+    state.curDevice = device;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_CURRENT_DEVICE_SECTORS](state, sectors) {
+    state.curDeviceSectors = sectors;
   },
 };
 

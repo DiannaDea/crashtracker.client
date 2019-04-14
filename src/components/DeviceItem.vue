@@ -25,7 +25,7 @@
         <a-button block>Service</a-button>
       </a-col>
       <a-col :span="12">
-        <a-button block>More</a-button>
+        <a-button block @click="goToDevicePage">More</a-button>
       </a-col>
     </a-row>
   </div>
@@ -54,6 +54,9 @@ export default {
       if (code === 2) return 'orange';
       if (code === 3 || code === 4) return 'red';
       return 'grey';
+    },
+    goToDevicePage() {
+      this.$router.push({ path: `/devices/${this.deviceItem.id}` });
     },
   },
   computed: {

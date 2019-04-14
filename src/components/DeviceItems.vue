@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1 v-if="!devices.length">No devices found</h1>
+    <a-skeleton v-if="!devicesLoaded" active />
+    <h1 v-if="devicesLoaded && !devices.length">No devices found</h1>
     <a-row
       v-else
       :gutter="16">
@@ -26,6 +27,9 @@ export default {
       type: Array,
       default: () => [],
     },
+    devicesLoaded: {
+      type: Boolean,
+    }
   },
 };
 </script>

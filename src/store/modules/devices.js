@@ -42,7 +42,6 @@ const mutations = {
   [mutationTypes.SET_CURRENT_DEVICE_SECTORS](state, sectors) {
     state.curDeviceSectors = sectors;
     state.sectorsLoaded = true;
-    state.devicesLoaded = false;
   },
 };
 

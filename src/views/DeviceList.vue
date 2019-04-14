@@ -4,7 +4,10 @@
       @filterDevices="setFilter"
       @findDevices="setSearchKey"
     />
-    <DeviceItems :devices="devicesToPass" />
+    <DeviceItems 
+      :devices="devicesToPass"
+      :devicesLoaded="devicesLoaded"
+    />
   </div>
 </template>
 
@@ -59,6 +62,7 @@ export default {
   computed: {
     ...mapState({
       devices: state => state.devices.all,
+      devicesLoaded: state => state.devices.devicesLoaded,
     }),
     devicesToPass() {
       return (this.currentStatus === 'all' && !this.currentSearchKey.length)

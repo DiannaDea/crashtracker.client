@@ -40,10 +40,10 @@ import SectorIcon from '../assets/sector.png';
 
 export default {
   name: 'SectorItem',
-  data () {
+  data() {
     return {
       sectorIcon: SectorIcon,
-    }
+    };
   },
   props: {
     sectorItem: {
@@ -53,12 +53,12 @@ export default {
   },
   methods: {
     getStatusRoundColor({ number }) {
-      return (number === 1) 
+      return (number === 1)
         ? 'green'
         : 'red';
     },
-  }
-}
+  },
+};
 </script>
 
 <style>

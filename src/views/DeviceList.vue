@@ -4,7 +4,7 @@
       @filterDevices="setFilter"
       @findDevices="setSearchKey"
     />
-    <DeviceItems 
+    <DeviceItems
       :devices="devicesToPass"
       :devicesLoaded="devicesLoaded"
     />

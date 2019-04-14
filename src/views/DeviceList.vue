@@ -74,10 +74,6 @@ export default {
 </script>
 
 <style scoped>
-  .devices-list {
-    /* padding: 0 50px; */
-  }
-
   .devices-list div {
     margin-bottom: 30px;
   }

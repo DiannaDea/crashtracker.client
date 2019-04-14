@@ -4,8 +4,10 @@ import * as mutationTypes from '../mutation-types';
 
 const state = {
   all: [],
+  devicesLoaded: false,
   curDevice: null,
   curDeviceSectors: [],
+  sectorsLoaded: false,
 };
 
 const getters = {};
@@ -29,6 +31,8 @@ const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_USER_DEVICES](state, devices) {
     state.all = devices;
+    state.devicesLoaded = true;
+    state.sectorsLoaded = false;
   },
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_CURRENT_DEVICE](state, device) {
@@ -37,6 +41,8 @@ const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_CURRENT_DEVICE_SECTORS](state, sectors) {
     state.curDeviceSectors = sectors;
+    state.sectorsLoaded = true;
+    state.devicesLoaded = false;
   },
 };
 

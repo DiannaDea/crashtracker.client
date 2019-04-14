@@ -1,8 +1,5 @@
 <template>
   <div class="device-info-container">
-    <a-divider>
-      <h3>Device information</h3>
-    </a-divider>
     <div v-if="!device">
       <a-skeleton active />
     </div>
@@ -79,10 +76,9 @@
     </a-row>
      <a-row :gutter="32" class="device-info" type="flex" justify="end">
       <a-col :span="7">
-        <a-button type="primary">View work statistics</a-button>
+        <a-button type="primary">Service statistics</a-button>
       </a-col>
     </a-row>
-     <a-divider />
   </div>
 </template>
 
@@ -98,10 +94,6 @@ export default {
 };
 </script>
 <style>
-  .device-info {
-    margin-bottom: 25px;
-  }
-
   .device-info-container > div.ant-divider {
     margin-bottom: 50px;
   }

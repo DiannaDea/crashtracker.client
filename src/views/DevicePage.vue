@@ -1,7 +1,13 @@
 <template>
-  <div>
+  <div class="device-page">
+    <a-divider>
+      <h3>Device information</h3>
+    </a-divider>
     <DeviceInfo :device="device"/>
-    <SectorsList />
+    <a-divider>
+      <h3>Sector information</h3>
+    </a-divider>
+    <SectorsList :sectors="sectors" :sectorsLoaded="sectorsLoaded"/>
   </div>
 </template>
 <script>
@@ -26,6 +32,7 @@ export default {
     ...mapState({
       device: state => state.devices.curDevice,
       sectors: state => state.devices.curDeviceSectors,
+      sectorsLoaded: state => state.devices.sectorsLoaded,
     }),
   },
   created() {
@@ -42,5 +49,8 @@ export default {
 
   .device-input-label {
     text-align: left;
+  }
+  .device-page > div.ant-divider {
+    margin-bottom: 50px;
   }
 </style>

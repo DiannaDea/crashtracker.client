@@ -31,7 +31,10 @@
       />
     </a-col>
     <a-col :span="3">
-      <a-button class="add-device-btn" type="primary">+ ADD DEVICE</a-button>
+      <a-button
+        class="add-device-btn"
+        type="primary"
+        @click="goToAddDevicePage">+ ADD DEVICE</a-button>
     </a-col>
   </a-row>
 </template>
@@ -50,6 +53,9 @@ export default {
     },
     findDevices(key) {
       this.$emit('findDevices', key);
+    },
+    goToAddDevicePage() {
+      this.$router.push({ path: '/add-device' });
     },
   },
 };

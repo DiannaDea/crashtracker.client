@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import HelloWorld from '@/components/HelloWorld';
 import DeviceList from '@/views/DeviceList';
 import DevicePage from '@/views/DevicePage';
+import AddDevicePage from '@/views/AddDevicePage';
 
 Vue.use(Router);
 
@@ -23,6 +24,11 @@ export default new Router({
       path: '/devices',
       name: 'DeviceList',
       component: DeviceList,
+    },
+    {
+      path: '/add-device',
+      name: 'AddDevicePage',
+      component: AddDevicePage,
     },
   ],
 });

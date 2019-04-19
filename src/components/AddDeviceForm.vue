@@ -72,7 +72,7 @@
         <a-col :span="10">
           <!-- Service interval (hours)-->
           <a-form-item
-            label="Service interval (h)"
+            label="Service interval"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -82,13 +82,16 @@
               :initialValue="30"
               :formatter="value => `${value || 30}h`"
               :parser="value => value.replace('h', '')"
-              v-decorator="['serviceInterval']"/>
+              v-decorator="[
+                'serviceInterval',
+                { rules: [{ required: true, message: 'Please input service interval!' }]}
+              ]"/>
           </a-form-item>
           <!--    -->
 
           <!-- Notify before service (percent of serviceInterval) -->
           <a-form-item
-            label="Notify before service (%)"
+            label="Notify before service"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -99,7 +102,10 @@
               :formatter="value => `${value || 15}%`"
               :parser="value => value.replace('%', '')"
               :initialValue="15"
-              v-decorator="['notifyBeforeService']"/>
+              v-decorator="[
+                'notifyBeforeService',
+                { rules: [{ required: true, message: 'Please input notify before service time!' }]}
+              ]"/>
           </a-form-item>
           <!--    -->
 
@@ -112,18 +118,20 @@
             <a-date-picker
               :initialValue="defaultDate"
               class="form-extra-fields-data"
-              v-decorator="['dateLastService']"
+              v-decorator="[
+                'dateLastService',
+                { rules: [{ required: true, message: 'Please input last service date!' }]}
+              ]"
             />
           </a-form-item>
           <!--    -->
 
-          <!-- <a-form-item :wrapper-col="{ span: 4 }">
-            <a-button type="primary">+ ADD DEVICE</a-button>
-          </a-form-item> -->
+          <a-form-item :wrapper-col="{ span: 4 }">
+            <a-button block type="primary">SAVE</a-button>
+          </a-form-item>
         </a-col>
       </a-row>
     </a-form>
-    <a-divider/>
     </div>
   </div>
 </template>

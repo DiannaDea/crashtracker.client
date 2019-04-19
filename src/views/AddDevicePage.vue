@@ -1,7 +1,7 @@
 <template>
   <div>
     <AddDeviceForm />
-    <!-- <AddSectorsList /> -->
+    <AddSectorsList />
   </div>
 </template>
 
@@ -14,6 +14,12 @@ export default {
   components: {
     AddDeviceForm,
     AddSectorsList,
+  },
+  data() {
+    return {
+      deviceInfo: null,
+      sectors: [],
+    };
   },
 };
 </script>

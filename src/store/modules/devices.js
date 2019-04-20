@@ -37,6 +37,14 @@ const actions = {
     const createdSectors = await devicesAPI.createDeviceSectors(sectors);
     commit(mutationTypes.SET_CREATED_SECTORS, createdSectors);
   },
+  async [actionTypes.DELETE_DEVICE]({ commit }, { deviceId }) {
+    await devicesAPI.deleteDevice(deviceId);
+    commit(mutationTypes.DELETE_DEVICE, deviceId);
+  },
+  async [actionTypes.DELETE_SECTOR]({ commit }, { sectorId }) {
+    await devicesAPI.deleteSector(sectorId);
+    commit(mutationTypes.DELETE_SECTOR, sectorId);
+  },
 };
 
 const mutations = {
@@ -66,6 +74,14 @@ const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_CREATED_SECTORS](state, sectors) {
     state.lastCreated.sectors = sectors;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.DELETE_DEVICE](state, deviceId) {
+    state.all = state.all.filter(device => device.id !== deviceId);
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.DELETE_SECTOR](state, sectorId) {
+    state.curDeviceSectors = state.curDeviceSectors.filter(sector => sector.id !== sectorId);
   },
 };
 

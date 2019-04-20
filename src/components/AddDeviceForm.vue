@@ -185,7 +185,7 @@ export default {
 
       this.createDevice({
         ...device,
-        userId: "43954c12-552f-4f52-8523-4d38bb8f6389",
+        userId: "44eba1e8-6365-11e9-a923-1681be663d3e",
       });
       this.$notify({
         group: 'user-notifications',

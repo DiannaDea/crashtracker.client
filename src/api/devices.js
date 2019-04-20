@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const getAllDevices = () => request('/users/43954c12-552f-4f52-8523-4d38bb8f6389/devices', 'get');
+const getAllDevices = () => request('/users/44eba1e8-6365-11e9-a923-1681be663d3e/devices', 'get');
 
 const getOneDevice = deviceId => request(`/devices/${deviceId}`, 'get');
 
@@ -10,10 +10,16 @@ const createDevice = deviceInfo => request('/devices', 'post', deviceInfo);
 
 const createDeviceSectors = sectors => request('/sectors', 'post', sectors);
 
+const deleteDevice = deviceId => request(`/devices/${deviceId}`, 'delete');
+
+const deleteSector = sectorId => request(`/sectors/${sectorId}`, 'delete');
+
 export default {
   getAllDevices,
   getOneDevice,
   getDeviceSectors,
   createDevice,
   createDeviceSectors,
+  deleteDevice,
+  deleteSector,
 };

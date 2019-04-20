@@ -4,7 +4,7 @@
     <p v-else-if="sectorsLoaded && !sectors.length">No sectors found</p>
     <a-row
       v-else
-      :gutter="16">
+      :gutter="16" type="flex" justify="center">
       <a-col
         v-for="sector in [ ...this.sectors, ...this.createdSectors ]"
         :key="sector.id"
@@ -13,12 +13,12 @@
       </a-col>
     </a-row>
     <div class="sector-list-panel">
-      <a-row type="flex" justify="end">
+      <a-row :gutter="16" type="flex" justify="end">
         <a-col :span="3">
-          <a-button type="dashed">Work statistics</a-button>
+          <a-button type="dashed" block >Work statistics</a-button>
         </a-col>
         <a-col :span="3">
-          <a-button @click="showModal" type="primary">+ ADD SECTOR</a-button>
+          <a-button @click="showModal" type="primary" block>+ ADD SECTOR</a-button>
         </a-col>
       </a-row>
     </div>

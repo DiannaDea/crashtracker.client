@@ -29,13 +29,23 @@
         <a-col><p>{{ `Current T: ${sectorItem.status.currentTemp} °C` }}</p></a-col>
       </a-row>
     </div>
-    <a-row>
-      <a-button block>More information</a-button>
+    <a-row :gutter="16">
+      <a-col :span="12">
+         <a-button
+         @click="submitDeleteSector"
+          type="danger" 
+          block>Delete</a-button>
+      </a-col>
+      <a-col :span="12">
+        <a-button block>More information</a-button>
+      </a-col>
     </a-row>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import * as actionTypes from '../store/action-types';
 import SectorIcon from '../assets/sector.png';
 
 export default {
@@ -52,11 +62,22 @@ export default {
     },
   },
   methods: {
+    ...mapActions('devices', {
+      deleteSector: actionTypes.DELETE_SECTOR,
+    }),
     getStatusRoundColor({ number }) {
       return (number === 1)
         ? 'green'
         : 'red';
     },
+    submitDeleteSector() {
+      this.deleteSector({ sectorId: this.sectorItem.id });
+      this.$notify({
+        group: 'user-notifications',
+        type: 'success',
+        title: 'Successfully deleted sector!',
+      });
+    }
   },
 };
 </script>
@@ -86,5 +107,6 @@ export default {
   }
   .temp-info {
     text-align: left;
+    padding-left: 10px;
   }
 </style>

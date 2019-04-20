@@ -74,15 +74,21 @@
         <!-- -->
       </a-col>
     </a-row>
-     <a-row :gutter="32" class="device-info" type="flex" justify="end">
-      <a-col :span="7">
-        <a-button type="primary">Service statistics</a-button>
+     <a-row :gutter="16" class="sector-list-panel" type="flex" justify="end">
+      <a-col :span="3">
+        <a-button block @click="submitDeleteDevice" type="danger">Delete</a-button>
+      </a-col>
+      <a-col :span="3">
+        <a-button block type="primary">Service statistics</a-button>
       </a-col>
     </a-row>
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import * as actionTypes from '../store/action-types';
+
 export default {
   name: 'DeviceInfo',
   props: {
@@ -91,6 +97,20 @@ export default {
       default: () => null,
     },
   },
+  methods: {
+    ...mapActions('devices', {
+      deleteDevice: actionTypes.DELETE_DEVICE,
+    }),
+    submitDeleteDevice() {
+      this.deleteDevice({ deviceId: this.device.id });
+      this.$notify({
+        group: 'user-notifications',
+        type: 'success',
+        title: 'Successfully deleted device!',
+      });
+      this.$router.push({ path: `/devices` });
+    }
+  }
 };
 </script>
 <style>

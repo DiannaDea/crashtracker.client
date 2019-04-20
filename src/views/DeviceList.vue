@@ -1,5 +1,26 @@
 <template>
   <div class="devices-list">
+    <a-alert
+      v-if="showServiceSoonNotification"
+      message="SERVICE SOON"
+      description="Some devices need to have service soon. Don't forget about it!"
+      type="warning"
+      closable
+    />
+    <a-alert
+      v-if="showCriticalNotification"
+      message="CRITICAL SITUATION"
+      description="Some devices have critical errors. Fix them as soon as possible!"
+      type="error"
+      closable
+    />
+    <a-alert
+      v-if="showServiceOverdueNotification"
+      message="SERVICE OVERDUE"
+      description="Some devices have service overdue. Send them to service!"
+      type="error"
+      closable
+    />
     <DevicePanel
       @filterDevices="setFilter"
       @findDevices="setSearchKey"
@@ -69,6 +90,18 @@ export default {
         ? this.devices
         : this.selectedDevices;
     },
+    showCriticalNotification() {
+      const criticalDevice = this.devices.find(device => device.status.code === 4);
+      return (criticalDevice) ? true : false;
+    },
+    showServiceOverdueNotification() {
+      const criticalDevice = this.devices.find(device => device.status.code === 3);
+      return (criticalDevice) ? true : false;
+    },
+    showServiceSoonNotification() {
+      const criticalDevice = this.devices.find(device => device.status.code === 2);
+      return (criticalDevice) ? true : false;
+    }
   },
   created() {
     this.getUserDevices();

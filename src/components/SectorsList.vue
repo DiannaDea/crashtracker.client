@@ -15,7 +15,7 @@
     <div class="sector-list-panel">
       <a-row :gutter="16" type="flex" justify="end">
         <a-col :span="3">
-          <a-button type="dashed" block >Work statistics</a-button>
+          <a-button @click="goToWorkStatisticsPage" type="dashed" block >Work statistics</a-button>
         </a-col>
         <a-col :span="3">
           <a-button @click="showModal" type="primary" block>+ ADD SECTOR</a-button>
@@ -84,6 +84,9 @@ export default {
     },
     handleCancelModal() {
       this.showAddSectorModal = false;
+    },
+    goToWorkStatisticsPage() {
+      this.$router.push({ path: `/devices/${this.deviceId}/work-statistics` });
     }
   }
 };

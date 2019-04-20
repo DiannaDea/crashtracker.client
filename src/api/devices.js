@@ -14,6 +14,10 @@ const deleteDevice = deviceId => request(`/devices/${deviceId}`, 'delete');
 
 const deleteSector = sectorId => request(`/sectors/${sectorId}`, 'delete');
 
+const getServiceStatistics = deviceId => request(`/statistics/${deviceId}/service`, 'get');
+
+const getWorkStatistics = deviceId => request(`/statistics/${deviceId}/sectors`, 'get');
+
 export default {
   getAllDevices,
   getOneDevice,
@@ -22,4 +26,6 @@ export default {
   createDeviceSectors,
   deleteDevice,
   deleteSector,
+  getServiceStatistics,
+  getWorkStatistics,
 };

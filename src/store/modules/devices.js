@@ -12,6 +12,10 @@ const state = {
     device: null,
     sectors: [],
   },
+  stat: {
+    service: [],
+    work: [],
+  },
 };
 
 const getters = {};
@@ -44,6 +48,14 @@ const actions = {
   async [actionTypes.DELETE_SECTOR]({ commit }, { sectorId }) {
     await devicesAPI.deleteSector(sectorId);
     commit(mutationTypes.DELETE_SECTOR, sectorId);
+  },
+  async [actionTypes.GET_DEVICE_SERVICE_STAT]({ commit }, { deviceId }) {
+    const stat = await devicesAPI.getServiceStatistics(deviceId);
+    commit(mutationTypes.SET_DEVICE_SERVICE_STAT, stat);
+  },
+  async [actionTypes.GET_DEVICE_SECTORS_WORK_STAT]({ commit }, { deviceId }) {
+    const stat = await devicesAPI.getWorkStatistics(deviceId);
+    commit(mutationTypes.SET_DEVICE_SECTORS_WORK_STAT, stat);
   },
 };
 
@@ -82,6 +94,14 @@ const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.DELETE_SECTOR](state, sectorId) {
     state.curDeviceSectors = state.curDeviceSectors.filter(sector => sector.id !== sectorId);
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_DEVICE_SERVICE_STAT](state, stat) {
+    state.stat.service = stat;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_DEVICE_SECTORS_WORK_STAT](state, stat) {
+    state.stat.work = stat;
   },
 };
 

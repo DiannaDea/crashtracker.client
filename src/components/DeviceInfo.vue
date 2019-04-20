@@ -79,7 +79,10 @@
         <a-button block @click="submitDeleteDevice" type="danger">Delete</a-button>
       </a-col>
       <a-col :span="3">
-        <a-button block type="primary">Service statistics</a-button>
+        <a-button
+          @click="goToServiceStatisticsPage"
+          block 
+          type="primary">Service statistics</a-button>
       </a-col>
     </a-row>
   </div>
@@ -109,6 +112,9 @@ export default {
         title: 'Successfully deleted device!',
       });
       this.$router.push({ path: `/devices` });
+    },
+    goToServiceStatisticsPage() {
+      this.$router.push({ path: `/devices/${this.device.id}/service-statistics` });
     }
   }
 };

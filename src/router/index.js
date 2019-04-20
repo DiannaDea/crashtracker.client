@@ -4,6 +4,8 @@ import HelloWorld from '@/components/HelloWorld';
 import DeviceList from '@/views/DeviceList';
 import DevicePage from '@/views/DevicePage';
 import AddDevicePage from '@/views/AddDevicePage';
+import ServiceStatistics from '@/views/ServiceStatistics';
+import WorkStatistics from '@/views/WorkStatistics';
 
 Vue.use(Router);
 
@@ -29,6 +31,16 @@ export default new Router({
       path: '/add-device',
       name: 'AddDevicePage',
       component: AddDevicePage,
+    },
+    {
+      path: '/devices/:deviceId/service-statistics',
+      name: 'ServiceStatistics',
+      component: ServiceStatistics,
+    },
+    {
+      path: '/devices/:deviceId/work-statistics',
+      name: 'WorkStatistics',
+      component: WorkStatistics,
     },
   ],
 });

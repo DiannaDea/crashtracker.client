@@ -8,6 +8,10 @@ const state = {
   curDevice: null,
   curDeviceSectors: [],
   sectorsLoaded: false,
+  lastCreated: {
+    device: null,
+    sectors: [],
+  },
 };
 
 const getters = {};
@@ -24,6 +28,14 @@ const actions = {
   async [actionTypes.GET_CURRENT_DEVICE_SECTORS]({ commit }, { deviceId }) {
     const curSectors = await devicesAPI.getDeviceSectors(deviceId);
     commit(mutationTypes.SET_CURRENT_DEVICE_SECTORS, curSectors);
+  },
+  async [actionTypes.CREATE_DEVICE]({ commit }, deviceInfo) {
+    const createdDevice = await devicesAPI.createDevice(deviceInfo);
+    commit(mutationTypes.SET_CREATED_DEVICE, createdDevice);
+  },
+  async [actionTypes.CREATE_DEVICE_SECTORS]({ commit }, sectors) {
+    const createdSectors = await devicesAPI.createDeviceSectors(sectors);
+    commit(mutationTypes.SET_CREATED_SECTORS, createdSectors);
   },
 };
 
@@ -42,6 +54,14 @@ const mutations = {
   [mutationTypes.SET_CURRENT_DEVICE_SECTORS](state, sectors) {
     state.curDeviceSectors = sectors;
     state.sectorsLoaded = true;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_CREATED_DEVICE](state, createdDevice) {
+    state.lastCreated.device = createdDevice;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_CREATED_SECTORS](state, sectors) {
+    state.lastCreated.sectors = sectors;
   },
 };
 

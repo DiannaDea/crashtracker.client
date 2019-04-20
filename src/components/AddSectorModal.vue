@@ -61,19 +61,6 @@
             />
           </a-form-item>
           <!--    -->
-
-          <!-- Descrition -->
-          <a-form-item
-          label="Description"
-            :label-col="{ span: 10 }"
-            :wrapper-col="{ span: 14 }">
-            <a-textarea
-              :rows="2"
-              v-decorator="[
-                'description'
-              ]"/>
-          </a-form-item>
-          <!--    -->
         </a-col>
       </a-row>
       <a-divider class="sector-modal-divider">Sensor information</a-divider>
@@ -86,7 +73,8 @@
             :wrapper-col="{ span: 16 }">
             <a-input-number
               :min="1"
-              :formatter="value => `${value || 200}°C`"
+              :initilValue="this.maxTemperature"
+              :formatter="value => `${value || this.maxTemperature}°C`"
               :parser="value => value.replace('°C', '')"
               v-decorator="[
                 'maxTemperature',
@@ -102,7 +90,8 @@
             :wrapper-col="{ span: 16 }">
             <a-input-number
               :min="1"
-              :formatter="value => `${value || 20}°C`"
+              :initilValue="this.minTemperature"
+              :formatter="value => `${value || this.minTemperature}°C`"
               :parser="value => value.replace('°C', '')"
               v-decorator="[
                 'minTemperature',
@@ -135,9 +124,9 @@
             <a-input-number
               :min="1"
               :max="100"
-              :formatter="value => `${value || 15}min`"
+              :initialValue="this.maxTimeExcess"
+              :formatter="value => `${value || this.maxTimeExcess}min`"
               :parser="value => value.replace('min', '')"
-              :initialValue="15"
               v-decorator="[
                 'maxTimeExcess',
                 { rules: [{ required: true, message: 'Please input notify before service time!' }]}
@@ -152,6 +141,9 @@
 </template>
 
 <script>
+import moment from 'moment';
+import { omit } from 'lodash';
+import uuid1 from 'uuid/v1';
 import SectorIcon from '../assets/sector.png';
 
 export default {
@@ -165,11 +157,20 @@ export default {
   data() {
     return {
       sectorIcon: SectorIcon,
+      trackerSetupDate: moment.now(),
+      maxTemperature: 200,
+      minTemperature: 20,
+      maxTimeExcess: 15,
     };
   },
   computed: {
-    getModalStatus() {
-      return this.modalVisible;
+    getModalStatus: {
+      set: function(n,o) {
+        this.$emit('handleOkModal');
+      },
+      get: function () {
+        return this.modalVisible;
+      }
     },
   },
   beforeCreate() {
@@ -177,7 +178,17 @@ export default {
   },
   methods: {
     handleOkModal() {
-      this.$emit('handleOkModal');
+      const modalFields = this.form.getFieldsValue();
+      const sectorValues = {
+        ...modalFields,
+        uuid: uuid1(),
+        trackerSetupDate: (modalFields.trackerSetupDate || this.trackerSetupDate).format('YYYY-MM-DD'),
+        maxTemperature: modalFields.maxTemperature || this.maxTemperature,
+        minTemperature: modalFields.minTemperature || this.minTemperature,
+        maxTimeExcess: modalFields.maxTimeExcess || this.maxTemperature,
+      };
+
+      this.$emit('handleOkModal', sectorValues);
     },
     handleCancelModal() {
       this.$emit('handleCancelModal');

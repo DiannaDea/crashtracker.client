@@ -4,9 +4,7 @@
       <h2>Step 1: Create new device</h2>
     </a-divider>
     <div class="device-form-container">
-      <a-form
-        :form="form"
-        @submit="handleSubmit">
+      <a-form :form="form">
       <a-row :gutter="64" type="flex" justify="center">
         <a-col :span="10">
           <!-- Name -->
@@ -15,6 +13,7 @@
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-input
+              :disabled="checkInputDisabled"
               placeholder="Type your name here"
               v-decorator="[
                 'name',
@@ -30,6 +29,7 @@
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-select
+              :disabled="checkInputDisabled"
               placeholder="Select a option and change input text above"
               v-decorator="[
                 'type',
@@ -47,6 +47,7 @@
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-input
+              :disabled="checkInputDisabled"
               placeholder="Type device model here"
               v-decorator="[
                 'model',
@@ -62,6 +63,7 @@
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-textarea
+              :disabled="checkInputDisabled"
               placeholder="Type device description here" :rows="4"
               v-decorator="[
                 'description'
@@ -79,8 +81,9 @@
               class="form-extra-fields"
               size='large'
               :min="1"
-              :initialValue="30"
-              :formatter="value => `${value || 30}h`"
+              :disabled="checkInputDisabled"
+              :initialValue="this.serviceInterval"
+              :formatter="value => `${value || this.serviceInterval}h`"
               :parser="value => value.replace('h', '')"
               v-decorator="[
                 'serviceInterval',
@@ -99,9 +102,10 @@
               size='large'
               :min="1"
               :max="100"
-              :formatter="value => `${value || 15}%`"
+              :disabled="checkInputDisabled"
+              :formatter="value => `${value || this.notifyBeforeService}%`"
               :parser="value => value.replace('%', '')"
-              :initialValue="15"
+              :initialValue="this.notifyBeforeService"
               v-decorator="[
                 'notifyBeforeService',
                 { rules: [{ required: true, message: 'Please input notify before service time!' }]}
@@ -116,7 +120,8 @@
             :wrapper-col="{ span: 16 }"
             placeholder="Select date">
             <a-date-picker
-              :initialValue="defaultDate"
+              :disabled="checkInputDisabled"
+              :initialValue="this.dateLastService"
               class="form-extra-fields-data"
               v-decorator="[
                 'dateLastService',
@@ -127,7 +132,10 @@
           <!--    -->
 
           <a-form-item :wrapper-col="{ span: 4 }">
-            <a-button block type="primary">SAVE</a-button>
+            <a-button
+              :disabled="checkInputDisabled"
+              @click="submitDeviceInfo"
+              type="primary">SAVE</a-button>
           </a-form-item>
         </a-col>
       </a-row>
@@ -138,19 +146,47 @@
 
 <script>
 import moment from 'moment';
-
-const now = moment();
+import { mapState, mapActions } from 'vuex';
+import * as actionTypes from '../store/action-types';
 
 export default {
   name: 'AddDeviceForm',
   data() {
     return {
-      defaultDate: now,
+      notifyBeforeService: 15,
+      serviceInterval: 30,
+      dateLastService: moment.now(),
+      clickedSave: false,
     };
   },
+  computed: {
+    ...mapState({
+      createdDevice: state => state.devices.lastCreated.device,
+    }),
+    checkInputDisabled() {
+      return (this.clickedSave && this.createdDevice && Object.keys(this.createdDevice).length) 
+        ? true 
+        : false;
+    }
+  },
   methods: {
-    handleSubmit() {
+    ...mapActions('devices', {
+      createDevice: actionTypes.CREATE_DEVICE,
+    }),
+    submitDeviceInfo() {
+      const modalFields = this.form.getFieldsValue();
+      const device = {
+        ...modalFields,
+        notifyBeforeService: modalFields.notifyBeforeService || this.notifyBeforeService,
+        serviceInterval: modalFields.serviceInterval || this.serviceInterval,
+        dateLastService: (modalFields.dateLastService || this.dateLastService).format('YYYY-MM-DD')
+      };
+      this.clickedSave = true;
 
+      this.createDevice({
+        ...device,
+        userId: "43954c12-552f-4f52-8523-4d38bb8f6389",
+      });
     },
   },
   beforeCreate() {

@@ -76,6 +76,11 @@ export default {
         sectorTrackers: [ sectorInfo ],
       });
       this.showAddSectorModal = false;
+      this.$notify({
+        group: 'user-notifications',
+        type: 'success',
+        title: 'Successfully created device sector!',
+      });
     },
     handleCancelModal() {
       this.showAddSectorModal = false;

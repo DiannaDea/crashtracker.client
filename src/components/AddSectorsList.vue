@@ -105,6 +105,11 @@ export default {
         deviceId: this.createdDevice.id,
         sectorTrackers: this.sectors,
       });
+      this.$notify({
+        group: 'user-notifications',
+        type: 'success',
+        title: 'Successfully created device sectors!',
+      });
     }
   },
 };

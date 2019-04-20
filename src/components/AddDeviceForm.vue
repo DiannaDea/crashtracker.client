@@ -187,6 +187,11 @@ export default {
         ...device,
         userId: "43954c12-552f-4f52-8523-4d38bb8f6389",
       });
+      this.$notify({
+        group: 'user-notifications',
+        type: 'success',
+        title: 'Successfully created device!',
+      });
     },
   },
   beforeCreate() {

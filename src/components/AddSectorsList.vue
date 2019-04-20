@@ -3,14 +3,22 @@
     <a-divider>
       <h2>Step 2: Create device sectors</h2>
     </a-divider>
-    <a-button
-      :disabled="checkButtonsDisabled"
-      @click="showModal" 
-      type="primary">ADD SECTOR</a-button>
-    <a-button
-      :disabled="checkButtonsDisabled"
-      @click="submitCreateSectors" 
-      type="primary">SAVE SECTORS</a-button>
+    <a-row :gutter="16" type="flex" justify="end" class="sectors-list-control-panel">
+      <a-col :span="3">
+        <a-button
+          block
+          :disabled="checkButtonsDisabled"
+          @click="showModal" 
+          type="primary">ADD SECTOR</a-button>
+      </a-col>
+      <a-col :span="3">
+        <a-button
+          block
+          :disabled="checkButtonsDisabled"
+          @click="submitCreateSectors" 
+          type="primary">SAVE SECTORS</a-button>
+      </a-col>
+    </a-row>
     <a-table
       :rowKey="sector => sector.uuid"
       :columns="columns" 
@@ -103,5 +111,7 @@ export default {
 </script>
 
 <style>
-
+  .sectors-list-control-panel {
+    margin-bottom: 25px;
+  }
 </style>

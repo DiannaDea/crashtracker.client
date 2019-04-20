@@ -25,7 +25,7 @@
             <a-input
               v-decorator="[
                 'name',
-                {rules: [{ required: true, message: 'Please input device name here!' }]}
+                {rules: [{ required: true, message: 'Please input sector name here!' }]}
               ]"
             />
           </a-form-item>
@@ -41,7 +41,7 @@
               :initialValue="6"
               v-decorator="[
                 'number',
-                { rules: [{ required: true, message: 'Please input service interval!' }]}
+                { rules: [{ required: true, message: 'Please input sector number!' }]}
               ]"/>
           </a-form-item>
           <!--    -->
@@ -56,7 +56,7 @@
             <a-input
               v-decorator="[
                 'location',
-                {rules: [{ required: true, message: 'Please input device name here!' }]}
+                {rules: [{ required: true, message: 'Please input sector location here!' }]}
               ]"
             />
           </a-form-item>
@@ -78,7 +78,7 @@
               :parser="value => value.replace('°C', '')"
               v-decorator="[
                 'maxTemperature',
-                { rules: [{ required: true, message: 'Please input service interval!' }]}
+                { rules: [{ required: true, message: 'Please input sensor max temperature!' }]}
               ]"/>
           </a-form-item>
           <!--    -->
@@ -95,7 +95,7 @@
               :parser="value => value.replace('°C', '')"
               v-decorator="[
                 'minTemperature',
-                { rules: [{ required: true, message: 'Please input service interval!' }]}
+                { rules: [{ required: true, message: 'Please input sensor min temperature!' }]}
               ]"/>
           </a-form-item>
           <!--    -->
@@ -110,7 +110,7 @@
             <a-date-picker
               v-decorator="[
                 'trackerSetupDate',
-                { rules: [{ required: true, message: 'Please input last service date!' }]}
+                { rules: [{ required: true, message: 'Please input sensor setup date!' }]}
               ]"
             />
           </a-form-item>
@@ -129,7 +129,7 @@
               :parser="value => value.replace('min', '')"
               v-decorator="[
                 'maxTimeExcess',
-                { rules: [{ required: true, message: 'Please input notify before service time!' }]}
+                { rules: [{ required: true, message: 'Please input sensor time nor access!' }]}
               ]"/>
           </a-form-item>
           <!--    -->

@@ -7,7 +7,7 @@
     <a-divider>
       <h3>Sector information</h3>
     </a-divider>
-    <SectorsList :sectors="sectors" :sectorsLoaded="sectorsLoaded"/>
+    <SectorsList :deviceId="(device) ? device.id : null" :sectors="sectors" :sectorsLoaded="sectorsLoaded"/>
   </div>
 </template>
 <script>

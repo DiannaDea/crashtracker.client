@@ -45,15 +45,19 @@ const mutations = {
     state.all = devices;
     state.devicesLoaded = true;
     state.sectorsLoaded = false;
+    state.lastCreated.device = null;
+    state.lastCreated.sectors = [];
   },
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_CURRENT_DEVICE](state, device) {
     state.curDevice = device;
+    state.lastCreated.device = null;
   },
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_CURRENT_DEVICE_SECTORS](state, sectors) {
     state.curDeviceSectors = sectors;
     state.sectorsLoaded = true;
+    state.lastCreated.sectors = [];
   },
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_CREATED_DEVICE](state, createdDevice) {

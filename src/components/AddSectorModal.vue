@@ -189,6 +189,7 @@ export default {
       };
 
       this.$emit('handleOkModal', sectorValues);
+      this.form.resetFields();
     },
     handleCancelModal() {
       this.$emit('handleCancelModal');
@@ -207,5 +208,8 @@ export default {
   }
   .add-sector-modal .sector-modal-divider {
     margin-bottom: 35px;
+  }
+  .add-sector-modal .ant-form-item-label {
+    align-items: left;
   }
 </style>

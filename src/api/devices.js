@@ -18,6 +18,10 @@ const getServiceStatistics = deviceId => request(`/statistics/${deviceId}/servic
 
 const getWorkStatistics = deviceId => request(`/statistics/${deviceId}/sectors`, 'get');
 
+const startService = deviceId => request(`/service/${deviceId}/start`, 'post');
+
+const stopService = deviceId => request(`/service/${deviceId}/stop`, 'post');
+
 export default {
   getAllDevices,
   getOneDevice,
@@ -28,4 +32,6 @@ export default {
   deleteSector,
   getServiceStatistics,
   getWorkStatistics,
+  startService,
+  stopService,
 };

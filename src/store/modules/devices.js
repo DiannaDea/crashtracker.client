@@ -57,6 +57,14 @@ const actions = {
     const stat = await devicesAPI.getWorkStatistics(deviceId);
     commit(mutationTypes.SET_DEVICE_SECTORS_WORK_STAT, stat);
   },
+  async [actionTypes.START_SERVICE]({ commit }, { deviceId }) {
+    await devicesAPI.startService(deviceId);
+    commit(mutationTypes.SET_SERVICE_IN_PROGRESS, deviceId);
+  },
+  async [actionTypes.STOP_SERVICE]({ commit }, { deviceId }) {
+    await devicesAPI.stopService(deviceId);
+    commit(mutationTypes.SET_SERVICE_FINISHED, deviceId);
+  },
 };
 
 const mutations = {
@@ -102,6 +110,30 @@ const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.SET_DEVICE_SECTORS_WORK_STAT](state, stat) {
     state.stat.work = stat;
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_SERVICE_IN_PROGRESS](state, deviceId) {
+    state.all = state.all.map(device => ((device.id === deviceId)
+      ? {
+        ...device,
+        status: {
+          code: 5,
+          name: 'SERVICE_IN_PROGRESS',
+        },
+      }
+      : device));
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_SERVICE_FINISHED](state, deviceId) {
+    state.all = state.all.map(device => ((device.id === deviceId)
+      ? {
+        ...device,
+        status: {
+          code: 1,
+          name: 'SERVICE_OK',
+        },
+      }
+      : device));
   },
 };
 

@@ -22,7 +22,16 @@
     </a-row>
     <a-row :gutter="16" class="device-control">
       <a-col :span="12">
-        <a-button block>Service</a-button>
+        <a-button
+          type="primary"
+          @click="handleStartService"
+          v-if="deviceItem.status.code !== 5" 
+          block>Start service</a-button>
+          <a-button
+          type="danger"
+          v-else
+          @click="handleStopService"
+          block>Stop service</a-button>
       </a-col>
       <a-col :span="12">
         <a-button block @click="goToDevicePage">More</a-button>
@@ -32,6 +41,8 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+import * as actionTypes from '../store/action-types';
 import FridgeIcon from '../assets/fridge_icon.png';
 import OvenIcon from '../assets/oven_icon.png';
 
@@ -44,6 +55,10 @@ export default {
     },
   },
   methods: {
+    ...mapActions('devices', {
+      startService: actionTypes.START_SERVICE,
+      stopService: actionTypes.STOP_SERVICE,
+    }),
     getImgUrl(type) {
       return (type === 'fridge')
         ? FridgeIcon
@@ -57,6 +72,12 @@ export default {
     },
     goToDevicePage() {
       this.$router.push({ path: `/devices/${this.deviceItem.id}` });
+    },
+    handleStartService() {
+      this.startService({ deviceId: this.deviceItem.id });
+    },
+    handleStopService() {
+      this.stopService({ deviceId: this.deviceItem.id });
     },
   },
   computed: {

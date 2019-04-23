@@ -13,3 +13,7 @@ export const GET_DEVICE_SECTORS_WORK_STAT = 'GET_DEVICE_SECTORS_WORK_STAT';
 
 export const START_SERVICE = 'START_SERVICE';
 export const STOP_SERVICE = 'STOP_SERVICE';
+
+export const SING_IN = 'SING_IN';
+export const SIGN_OUT = 'SIGN_OUT';
+export const SIGN_UP = 'SIGN_UP';

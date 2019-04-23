@@ -6,6 +6,8 @@ import DevicePage from '@/views/DevicePage';
 import AddDevicePage from '@/views/AddDevicePage';
 import ServiceStatistics from '@/views/ServiceStatistics';
 import WorkStatistics from '@/views/WorkStatistics';
+import SignUpPage from '@/views/SignUpPage';
+import SignInPage from '@/views/SignInPage';
 
 Vue.use(Router);
 
@@ -41,6 +43,16 @@ export default new Router({
       path: '/devices/:deviceId/work-statistics',
       name: 'WorkStatistics',
       component: WorkStatistics,
+    },
+    {
+      path: '/sign-up',
+      name: 'SignUpPage',
+      component: SignUpPage,
+    },
+    {
+      path: '/sign-in',
+      name: 'SignInPage',
+      component: SignInPage,
     },
   ],
 });

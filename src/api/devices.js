@@ -1,6 +1,6 @@
 import request from '../utils/request';
 
-const getAllDevices = () => request('/users/44eba1e8-6365-11e9-a923-1681be663d3e/devices', 'get');
+const getAllDevices = userId => request(`/users/${userId}/devices`, 'get');
 
 const getOneDevice = deviceId => request(`/devices/${deviceId}`, 'get');
 

@@ -162,6 +162,7 @@ export default {
   computed: {
     ...mapState({
       createdDevice: state => state.devices.lastCreated.device,
+      user: state => state.auth.user,
     }),
     checkInputDisabled() {
       return (this.clickedSave && this.createdDevice && Object.keys(this.createdDevice).length) 
@@ -185,7 +186,7 @@ export default {
 
       this.createDevice({
         ...device,
-        userId: "44eba1e8-6365-11e9-a923-1681be663d3e",
+        userId: this.user.id,
       });
       this.$notify({
         group: 'user-notifications',

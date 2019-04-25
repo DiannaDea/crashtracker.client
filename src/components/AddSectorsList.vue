@@ -104,11 +104,13 @@ export default {
       this.createDeviceSectors({
         deviceId: this.createdDevice.id,
         sectorTrackers: this.sectors,
-      });
-      this.$notify({
-        group: 'user-notifications',
-        type: 'success',
-        title: 'Successfully created device sectors!',
+      }).then(createdSectors => {
+        this.$notify({
+          group: 'user-notifications',
+          type: 'success',
+          title: 'Successfully created device sectors!',
+        });
+        this.$router.push({ path: `/devices` });
       });
     }
   },

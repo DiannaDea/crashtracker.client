@@ -17,3 +17,5 @@ export const STOP_SERVICE = 'STOP_SERVICE';
 export const SING_IN = 'SING_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 export const SIGN_UP = 'SIGN_UP';
+
+export const GET_USER = 'GET_USER';

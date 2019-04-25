@@ -21,8 +21,8 @@ const state = {
 const getters = {};
 
 const actions = {
-  async [actionTypes.GET_USER_DEVICES]({ commit }) {
-    const devices = await devicesAPI.getAllDevices();
+  async [actionTypes.GET_USER_DEVICES]({ commit }, userId) {
+    const devices = await devicesAPI.getAllDevices(userId);
     commit(mutationTypes.SET_USER_DEVICES, devices);
   },
   async [actionTypes.GET_CURRENT_DEVICE]({ commit }, { deviceId }) {
@@ -38,8 +38,11 @@ const actions = {
     commit(mutationTypes.SET_CREATED_DEVICE, createdDevice);
   },
   async [actionTypes.CREATE_DEVICE_SECTORS]({ commit }, sectors) {
-    const createdSectors = await devicesAPI.createDeviceSectors(sectors);
-    commit(mutationTypes.SET_CREATED_SECTORS, createdSectors);
+    return new Promise(async (resolve) => {
+      const createdSectors = await devicesAPI.createDeviceSectors(sectors);
+      commit(mutationTypes.SET_CREATED_SECTORS, createdSectors);
+      resolve(createdSectors);
+    });
   },
   async [actionTypes.DELETE_DEVICE]({ commit }, { deviceId }) {
     await devicesAPI.deleteDevice(deviceId);

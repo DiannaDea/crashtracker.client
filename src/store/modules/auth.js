@@ -7,10 +7,7 @@ const state = {
   token: null || localStorage.getItem('token'),
 };
 
-const getters = {
-  // eslint-disable-next-line no-shadow
-  isAuthenticated: state => !!state.token,
-};
+const getters = {};
 
 const actions = {
   async [actionTypes.SING_IN]({ commit }, signInParams) {
@@ -32,6 +29,13 @@ const actions = {
       resolve(user);
     });
   },
+  async [actionTypes.GET_USER]({ commit }, userId) {
+    return new Promise(async (resolve) => {
+      const user = await authAPI.getUser(userId);
+      commit(mutationTypes.SET_USER, user);
+      resolve(user);
+    });
+  },
 };
 
 const mutations = {
@@ -43,7 +47,12 @@ const mutations = {
   // eslint-disable-next-line no-shadow
   [mutationTypes.REMOVE_USER_TOKEN](state) {
     state.token = null;
+    state.user = null;
     localStorage.removeItem('token');
+  },
+  // eslint-disable-next-line no-shadow
+  [mutationTypes.SET_USER](state, user) {
+    state.user = user;
   },
 };
 

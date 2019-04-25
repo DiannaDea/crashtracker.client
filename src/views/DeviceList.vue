@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import jwt from 'jsonwebtoken';
 import { mapState, mapActions } from 'vuex';
 import DeviceItems from '../components/DeviceItems';
 import DevicePanel from '../components/DevicePanel';
@@ -60,6 +61,9 @@ export default {
     ...mapActions('devices', {
       getUserDevices: actionTypes.GET_USER_DEVICES,
     }),
+    ...mapActions('auth', {
+      getUser: actionTypes.GET_USER,
+    }),
     setFilter(type) {
       this.currentStatus = type;
       this.doFilterAndSort();
@@ -84,6 +88,7 @@ export default {
     ...mapState({
       devices: state => state.devices.all,
       devicesLoaded: state => state.devices.devicesLoaded,
+      token: state => state.auth.token,
     }),
     devicesToPass() {
       return (this.currentStatus === 'all' && !this.currentSearchKey.length)
@@ -103,8 +108,13 @@ export default {
       return (criticalDevice) ? true : false;
     }
   },
-  created() {
-    this.getUserDevices();
+  async created() {
+    const decoded = jwt.decode(this.token);
+
+    this.getUser(decoded.email)
+      .then(user => {
+        this.getUserDevices(user.id);
+      });
   },
 };
 

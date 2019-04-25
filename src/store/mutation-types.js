@@ -16,3 +16,5 @@ export const SET_SERVICE_FINISHED = 'SET_SERVICE_FINISHED';
 
 export const SET_USER_TOKEN = 'SET_USER_TOKEN';
 export const REMOVE_USER_TOKEN = 'REMOVE_USER_TOKEN';
+
+export const SET_USER = 'SET_USER';

@@ -2,7 +2,7 @@
   <a-row>
     <a-col :span="7"></a-col>
     <a-col :span="10">
-      <h2>Sign in</h2>
+      <a-divider>Sign in</a-divider>
       <a-form
         id="components-form-demo-normal-login"
         :form="form"
@@ -48,13 +48,11 @@
               html-type="submit"
               class="login-form-button"
             >
-              Log in
+              Sign in
             </a-button>
           </a-row>
           <a-row>
-            Or <a href="">
-            register now!
-            </a>
+            Or <router-link to="/sign-up">sign up now!</router-link>
           </a-row>
         </a-form-item>
       </a-form>
@@ -86,6 +84,11 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           this.signIn(values).then((token) => {
+            this.$notify({
+              group: 'user-notifications',
+              type: 'success',
+              title: 'Successfully signed in!',
+            });
             this.$router.push({ path: `/devices` });
           });
         }

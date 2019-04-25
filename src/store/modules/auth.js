@@ -26,6 +26,12 @@ const actions = {
       resolve();
     });
   },
+  async [actionTypes.SIGN_UP]({ commit }, userParams) {
+    return new Promise(async (resolve) => {
+      const user = await authAPI.signUp(userParams);
+      resolve(user);
+    });
+  },
 };
 
 const mutations = {

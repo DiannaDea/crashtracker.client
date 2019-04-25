@@ -4,7 +4,7 @@
     <a-menu
       theme="dark"
       mode="horizontal"
-      :defaultSelectedKeys="['1']"
+      :selectedKeys="getSelectedItem"
       :style="{ lineHeight: '64px' }"
     >
       <a-menu-item key="1" v-if="!token">
@@ -36,6 +36,17 @@ export default {
     ...mapState({
       token: state => state.auth.token,
     }),
+    getSelectedItem() {
+      const path = this.$route.path.slice(1);
+      const items = {
+        'sign-in': ['1'],
+        'sign-up': ['2'],
+        'devices': ['3'],
+        'add-device': ['4'],
+      };
+
+      return items[path];
+    }
   },
   methods: {
     ...mapActions('auth', {

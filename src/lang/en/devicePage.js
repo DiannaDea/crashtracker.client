@@ -17,8 +17,8 @@ module.exports = {
     minT: 'Min T:',
     currentT: 'Current T',
   },
-  btnDeleteSector: '',
-  btnMoreSectorInfo: '',
+  btnDeleteSector: 'Delete',
+  btnMoreSectorInfo: 'More',
   btnAddSector: '+ ADD SECTOR',
   btnWorkStat: 'Work statistics',
 };

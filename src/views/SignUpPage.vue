@@ -2,7 +2,9 @@
   <a-row>
     <a-col :span="7"></a-col>
     <a-col :span="10">
-      <a-divider>Sign up</a-divider>
+      <a-divider>
+        {{ $lang.auth.signUp.title }}
+      </a-divider>
       <a-form
         :form="form"
         @submit="handleSubmit"

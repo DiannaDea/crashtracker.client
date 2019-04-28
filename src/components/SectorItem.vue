@@ -40,10 +40,10 @@
          <a-button
          @click="submitDeleteSector"
           type="danger" 
-          block>Delete</a-button>
+          block>{{ $lang.devicePage.btnDeleteSector }}</a-button>
       </a-col>
       <a-col :span="12">
-        <a-button block>More information</a-button>
+        <a-button block>{{ $lang.devicePage.btnMoreSectorInfo }}</a-button>
       </a-col>
     </a-row>
   </div>

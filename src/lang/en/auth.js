@@ -16,7 +16,7 @@ module.exports = {
     signUpText: 'sign up now!',
   },
   signUp: {
-    title: '',
+    title: 'Sign up',
     inputs: {
       email: {
         name: 'Email',

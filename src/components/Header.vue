@@ -8,21 +8,25 @@
       :style="{ lineHeight: '64px' }"
     >
       <a-menu-item key="1" v-if="!token">
-        <router-link to="/sign-in"><a-icon type="login" />Sign in</router-link>
+        <router-link to="/sign-in"><a-icon type="login" />{{ $lang.header.signIn }}</router-link>
       </a-menu-item>
       <a-menu-item key="2" v-if="!token">
-        <router-link to="/sign-up"><a-icon type="plus-circle" />Sign up</router-link>
+        <router-link to="/sign-up"><a-icon type="plus-circle" />{{ $lang.header.signUp }}</router-link>
       </a-menu-item>
       <a-menu-item key="3" v-if="token">
-        <router-link to="/devices"><a-icon type="tool" />My devices</router-link>
+        <router-link to="/devices"><a-icon type="tool" />{{ $lang.header.myDevices }}</router-link>
       </a-menu-item>
       <a-menu-item key="4" v-if="token">
-        <router-link to="/add-device"><a-icon type="plus-circle" />Add device</router-link>
+        <router-link to="/add-device"><a-icon type="plus-circle" />{{ $lang.header.addDevice }}</router-link>
       </a-menu-item>
       <a-menu-item key="5" @click="logout" v-if="token">
-        <a-icon type="logout" />Logout
+        <a-icon type="logout" />{{ $lang.header.logout }}
       </a-menu-item>
     </a-menu>
+    <a-select defaultValue="en" @change="handleChange" class="language-selector">
+      <a-select-option value="en">EN</a-select-option>
+      <a-select-option value="ua">UA</a-select-option>
+    </a-select>
   </a-layout-header>
 </template>
 
@@ -56,6 +60,9 @@ export default {
       this.signOut().then(() => {
         this.$router.push({ path: `/sign-in` });
       });
+    },
+    handleChange(langValue) {
+      this.$lang.setLang(langValue);
     }
   }
 }
@@ -64,5 +71,11 @@ export default {
 <style>
   .logo {
     position: absolute;
+  }
+  .language-selector {
+    width: 90px;
+    position: absolute;
+    top: 15px;
+    right: 30px;
   }
 </style>

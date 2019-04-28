@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h3>Service statistics of {{ `${servicetat[0].name} (model - ${servicetat[0].model})` }}</h3>
+    <h3>
+      {{ $lang.stat.service.title }} {{ `${servicetat[0].name} (${$lang.stat.service.model} - ${servicetat[0].model})` }}
+    </h3>
     <a-table
       :rowKey="statItem => statItem.id"
       :columns="columns" 
@@ -13,34 +15,32 @@
 import { mapState, mapActions } from 'vuex';
 import * as actionTypes from '../store/action-types';
 
-const columns = [{
-  title: 'Service start',
-  dataIndex: 'dateStart',
-}, {
-  title: 'Service end',
-  dataIndex: 'dateEnd',
-}, {
-  title: 'Service interval',
-  dataIndex: 'serviceInterval',
-}, {
-  title: 'Worked (h) after last service',
-  dataIndex: 'workHoursAfterService',
-}, {
-  title: 'General work (h)',
-  dataIndex: 'workHoursGeneral',
-}, {
-  title: 'Critical situations count',
-  dataIndex: 'criticalCount',
-}, {
-  title: 'Avg T°C sectors',
-  dataIndex: 'sectorsAvgTemp',
-}];
-
 export default {
   name: 'ServiceStatistics',
   data() {
     return {
-      columns,
+      columns: [{
+        title: this.$lang.stat.service.columns.dateStart,
+        dataIndex: 'dateStart',
+      }, {
+        title: this.$lang.stat.service.columns.dateEnd,
+        dataIndex: 'dateEnd',
+      }, {
+        title: this.$lang.stat.service.columns.serviceInterval,
+        dataIndex: 'serviceInterval',
+      }, {
+        title: this.$lang.stat.service.columns.workHoursAfterService,
+        dataIndex: 'workHoursAfterService',
+      }, {
+        title: this.$lang.stat.service.columns.workHoursGeneral,
+        dataIndex: 'workHoursGeneral',
+      }, {
+        title: this.$lang.stat.service.columns.criticalCount,
+        dataIndex: 'criticalCount',
+      }, {
+        title: this.$lang.stat.service.columns.sectorsAvgTemp,
+        dataIndex: 'sectorsAvgTemp',
+      }],
     }
   },
   computed: {

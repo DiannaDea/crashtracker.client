@@ -16,8 +16,8 @@
       </a-col>
       <a-col :span="18">
         <p>{{ deviceItem.name }}</p>
-        <p>{{ `STATUS: ${deviceItem.status.name}` }}</p>
-        <p>{{ `Next service: ${deviceItem.dateLastService}` }}</p>
+        <p>{{ `${$lang.deviceList.deviceItem.status} ${deviceItem.status.name}` }}</p>
+        <p>{{ `${$lang.deviceList.deviceItem.nextService} ${deviceItem.dateLastService}` }}</p>
       </a-col>
     </a-row>
     <a-row :gutter="16" class="device-control">
@@ -26,15 +26,17 @@
           type="primary"
           @click="handleStartService"
           v-if="deviceItem.status.code !== 5" 
-          block>Start service</a-button>
+          block>{{ $lang.deviceList.deviceItem.btnStartService }}</a-button>
           <a-button
           type="danger"
           v-else
           @click="handleStopService"
-          block>Stop service</a-button>
+          block>{{ $lang.deviceList.deviceItem.btnEndService }}</a-button>
       </a-col>
       <a-col :span="12">
-        <a-button block @click="goToDevicePage">More</a-button>
+        <a-button block @click="goToDevicePage">
+          {{ $lang.deviceList.deviceItem.btnMoreInfo }}
+        </a-button>
       </a-col>
     </a-row>
   </div>

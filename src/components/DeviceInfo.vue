@@ -8,7 +8,7 @@
         <!-- Device name -->
         <a-row>
           <a-col :span="8">
-            <div class="device-input-label"><p>Name: </p></div>
+            <div class="device-input-label"><p>{{$lang.devicePage.inputs.name}}</p></div>
           </a-col>
           <a-col :span="16">
             <a-input class="device-input" :value="device.name" />
@@ -19,7 +19,7 @@
         <!-- Device model -->
         <a-row>
           <a-col :span="8">
-            <div class="device-input-label"><p>Model: </p></div>
+            <div class="device-input-label"><p>{{$lang.devicePage.inputs.model}}</p></div>
           </a-col>
           <a-col :span="16">
             <a-input class="device-input" :value="device.model" />
@@ -30,7 +30,7 @@
         <!-- Device type -->
         <a-row>
           <a-col :span="8">
-            <div class="device-input-label"><p>Device type: </p></div>
+            <div class="device-input-label"><p>{{$lang.devicePage.inputs.type}}</p></div>
           </a-col>
           <a-col :span="16">
             <a-input class="device-input" :value="device.type" />
@@ -43,7 +43,7 @@
         <!-- Device service interval -->
         <a-row>
           <a-col :span="8">
-            <div class="device-input-label"><p>Service interval: </p></div>
+            <div class="device-input-label"><p>{{$lang.devicePage.inputs.serviceInterval}}</p></div>
           </a-col>
           <a-col :span="16">
             <a-input class="device-input" :value="device.serviceInterval" />
@@ -54,7 +54,9 @@
         <!-- Service notify before -->
         <a-row>
           <a-col :span="8">
-            <div class="device-input-label"><p>Notify before service: </p></div>
+            <div class="device-input-label">
+              <p>{{$lang.devicePage.inputs.notifyBeforeService}}</p>
+            </div>
           </a-col>
           <a-col :span="16">
             <a-input class="device-input" :value="device.notifyBeforeService" />
@@ -65,7 +67,9 @@
         <!-- Device description -->
         <a-row>
           <a-col :span="8">
-            <div class="device-input-label"><p>Description: </p></div>
+            <div class="device-input-label">
+              <p>{{$lang.devicePage.inputs.description}}</p>
+            </div>
           </a-col>
           <a-col :span="16">
             <a-textarea class="device-input" :value="device.description" :rows="4"/>
@@ -76,13 +80,15 @@
     </a-row>
      <a-row :gutter="16" class="sector-list-panel" type="flex" justify="end">
       <a-col :span="3">
-        <a-button block @click="submitDeleteDevice" type="danger">Delete</a-button>
+        <a-button block @click="submitDeleteDevice" type="danger">
+          {{$lang.devicePage.btnDeleteDevice}}
+        </a-button>
       </a-col>
       <a-col :span="3">
         <a-button
           @click="goToServiceStatisticsPage"
           block 
-          type="primary">Service statistics</a-button>
+          type="primary">{{$lang.devicePage.btnServiceStat}}</a-button>
       </a-col>
     </a-row>
   </div>

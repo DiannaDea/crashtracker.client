@@ -1,12 +1,12 @@
 <template>
   <a-row type="flex" justify="end">
     <a-col :span="12">
-      <h1 class="page-title">Devices</h1>
+      <h1 class="page-title">{{ $lang.deviceList.deviceTitle }}</h1>
     </a-col>
     <a-col :span="5">
       <a-row>
          <a-col :span="12">
-           <div class="filter-label"><p>Status: </p></div>
+           <div class="filter-label"><p>{{ $lang.deviceList.statusSelect.title }}</p></div>
          </a-col>
          <a-col :span="12">
            <a-select
@@ -14,10 +14,18 @@
             defaultValue="all"
             style="width: 120px"
             @change="filterDevices">
-            <a-select-option value="all">All</a-select-option>
-            <a-select-option value="working">Working</a-select-option>
-            <a-select-option value="critical">Critical</a-select-option>
-            <a-select-option value="service">On service</a-select-option>
+            <a-select-option value="all">
+              {{ $lang.deviceList.statusSelect.options.all }}
+            </a-select-option>
+            <a-select-option value="working">
+              {{ $lang.deviceList.statusSelect.options.working }}
+            </a-select-option>
+            <a-select-option value="critical">
+              {{ $lang.deviceList.statusSelect.options.critical }}
+            </a-select-option>
+            <a-select-option value="service">
+              {{ $lang.deviceList.statusSelect.options.onService }}
+            </a-select-option>
           </a-select>
          </a-col>
       </a-row>
@@ -25,7 +33,7 @@
     <a-col :span="4">
       <a-input-search
         class="search-panel"
-        placeholder="Search..."
+        :placeholder="$lang.deviceList.searchTitle"
         style="width: 200px"
         @search="findDevices"
       />
@@ -34,7 +42,9 @@
       <a-button
         class="add-device-btn"
         type="primary"
-        @click="goToAddDevicePage">+ ADD DEVICE</a-button>
+        @click="goToAddDevicePage">
+        {{ $lang.deviceList.btnAddDevice }}
+      </a-button>
     </a-col>
   </a-row>
 </template>

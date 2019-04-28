@@ -14,18 +14,20 @@
       <a-form
         :form="form"
         @submit="handleSubmit">
-      <a-divider class="sector-modal-divider">Sector information</a-divider>
+      <a-divider class="sector-modal-divider">
+        {{ $lang.addDevice.sectorModal.sectorTitle }}
+      </a-divider>
       <a-row :gutter="16">
         <a-col :span="12">
           <!-- Sector name -->
           <a-form-item
-          label="Name"
+            :label="$lang.addDevice.sectorModal.sectorInputs.name.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input
               v-decorator="[
                 'name',
-                {rules: [{ required: true, message: 'Please input sector name here!' }]}
+                {rules: [{ required: true, message: $lang.addDevice.sectorModal.sectorInputs.name.validation }]}
               ]"
             />
           </a-form-item>
@@ -33,7 +35,7 @@
 
           <!-- Number -->
           <a-form-item
-          label="Number"
+            :label="$lang.addDevice.sectorModal.sectorInputs.number.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -41,7 +43,7 @@
               :initialValue="6"
               v-decorator="[
                 'number',
-                { rules: [{ required: true, message: 'Please input sector number!' }]}
+                { rules: [{ required: true, message: $lang.addDevice.sectorModal.sectorInputs.number.validation }]}
               ]"/>
           </a-form-item>
           <!--    -->
@@ -50,25 +52,30 @@
         <a-col :span="12">
           <!-- Sector location -->
           <a-form-item
-          label="Location"
+            :label="$lang.addDevice.sectorModal.sectorInputs.location.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input
               v-decorator="[
                 'location',
-                {rules: [{ required: true, message: 'Please input sector location here!' }]}
+                {rules: [{ 
+                  required: true, 
+                  message: $lang.addDevice.sectorModal.sectorInputs.location.validation 
+                }]}
               ]"
             />
           </a-form-item>
           <!--    -->
         </a-col>
       </a-row>
-      <a-divider class="sector-modal-divider">Sensor information</a-divider>
+      <a-divider class="sector-modal-divider">
+        {{ $lang.addDevice.sectorModal.sensorTitle }}
+      </a-divider>
       <a-row>
         <a-col :span="9">
           <!-- Max temperature -->
           <a-form-item
-          label="Max T"
+            :label="$lang.addDevice.sectorModal.sectorInputs.maxTemperature.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -78,14 +85,19 @@
               :parser="value => value.replace('°C', '')"
               v-decorator="[
                 'maxTemperature',
-                { rules: [{ required: true, message: 'Please input sensor max temperature!' }]}
+                { 
+                  rules: [{ 
+                    required: true, 
+                    message: $lang.addDevice.sectorModal.sectorInputs.maxTemperature.validation,
+                  }]
+                }
               ]"/>
           </a-form-item>
           <!--    -->
 
           <!-- Min temperature -->
           <a-form-item
-          label="Min T"
+            :label="$lang.addDevice.sectorModal.sectorInputs.minTemperature.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -95,7 +107,12 @@
               :parser="value => value.replace('°C', '')"
               v-decorator="[
                 'minTemperature',
-                { rules: [{ required: true, message: 'Please input sensor min temperature!' }]}
+                { 
+                  rules: [{ 
+                    required: true, 
+                    message: $lang.addDevice.sectorModal.sectorInputs.minTemperature.validation,
+                  }]
+                }
               ]"/>
           </a-form-item>
           <!--    -->
@@ -103,14 +120,19 @@
         <a-col :span="15">
           <!-- Date setup -->
           <a-form-item
-            label="Setup date"
+            :label="$lang.addDevice.sectorModal.sectorInputs.setupDate.name"
             :label-col="{ span: 12 }"
             :wrapper-col="{ span: 12 }"
-            placeholder="Select date">
+            :placeholder="$lang.addDevice.sectorModal.sectorInputs.setupDate.placeholder">
             <a-date-picker
               v-decorator="[
                 'trackerSetupDate',
-                { rules: [{ required: true, message: 'Please input sensor setup date!' }]}
+                { 
+                  rules: [{ 
+                    required: true, 
+                    message: $lang.addDevice.sectorModal.sectorInputs.setupDate.validation,
+                  }]
+                }
               ]"
             />
           </a-form-item>
@@ -118,18 +140,23 @@
 
           <!-- Time norm access -->
            <a-form-item
-            label="Time norm access"
+            :label="$lang.addDevice.sectorModal.sectorInputs.timeNormAccess.name"
             :label-col="{ span: 12 }"
             :wrapper-col="{ span: 12 }">
             <a-input-number
               :min="1"
               :max="100"
               :initialValue="this.maxTimeExcess"
-              :formatter="value => `${value || this.maxTimeExcess}min`"
-              :parser="value => value.replace('min', '')"
+              :formatter="value => `${value || this.maxTimeExcess}${$lang.addDevice.sectorModal.sectorInputs.timeNormAccess.minutes}`"
+              :parser="value => value.replace($lang.addDevice.sectorModal.sectorInputs.timeNormAccess.minutes, '')"
               v-decorator="[
                 'maxTimeExcess',
-                { rules: [{ required: true, message: 'Please input sensor time nor access!' }]}
+                { 
+                  rules: [{ 
+                    required: true, 
+                    message: $lang.addDevice.sectorModal.sectorInputs.timeNormAccess.validation,
+                  }]
+                }
               ]"/>
           </a-form-item>
           <!--    -->

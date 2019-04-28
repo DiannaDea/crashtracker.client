@@ -9,16 +9,16 @@
       >
         <a-form-item
           v-bind="formItemLayout"
-          label="Email"
+          :label="$lang.auth.signUp.inputs.email.name"
         >
           <a-input
             v-decorator="[
               'email',
               {
                 rules: [{
-                  type: 'email', message: 'The input is not valid E-mail!',
+                  type: 'email', message: $lang.auth.signUp.inputs.email.notValid,
                 }, {
-                  required: true, message: 'Please input your E-mail!',
+                  required: true, message: $lang.auth.signUp.inputs.email.validation,
                 }]
               }
             ]"
@@ -26,14 +26,14 @@
         </a-form-item>
                 <a-form-item
           v-bind="formItemLayout"
-          label="First name"
+          :label="$lang.auth.signUp.inputs.firstName.name"
         >
           <a-input
             v-decorator="[
               'firstName',
               {
                 rules: [{
-                  required: true, message: 'Please input your first name!',
+                  required: true, message: $lang.auth.signUp.inputs.email.validation,
                 }]
               }
             ]"
@@ -41,14 +41,14 @@
         </a-form-item>
                 <a-form-item
           v-bind="formItemLayout"
-          label="Last name"
+          :label="$lang.auth.signUp.inputs.lastName.name"
         >
           <a-input
             v-decorator="[
               'lastName',
               {
                 rules: [{
-                  required: true, message: 'Please input your last name!',
+                  required: true, message: $lang.auth.signUp.inputs.lastName.validation,
                 }]
               }
             ]"
@@ -56,14 +56,14 @@
         </a-form-item>
         <a-form-item
           v-bind="formItemLayout"
-          label="Password"
+          :label="$lang.auth.signUp.inputs.password.name"
         >
           <a-input
             v-decorator="[
               'password',
               {
                 rules: [{
-                  required: true, message: 'Please input your password!',
+                  required: true, message: $lang.auth.signUp.inputs.password.validation,
                 }, {
                   validator: validateToNextPassword,
                 }],
@@ -74,14 +74,14 @@
         </a-form-item>
         <a-form-item
           v-bind="formItemLayout"
-          label="Confirm Password"
+          :label="$lang.auth.signUp.inputs.confirmPassword.name"
         >
           <a-input
             v-decorator="[
               'confirm',
               {
                 rules: [{
-                  required: true, message: 'Please confirm your password!',
+                  required: true, message: $lang.auth.signUp.inputs.confirmPassword.validation,
                 }, {
                   validator: compareToFirstPassword,
                 }],
@@ -98,11 +98,14 @@
               html-type="submit"
               class="login-form-button"
             >
-              Sign up
+              {{ $lang.auth.signUp.btnSignUp }}
             </a-button>
           </a-row>
           <a-row>
-            Or <router-link to="/sign-in">sign in now!</router-link>
+            {{ $lang.auth.signUp.or }} 
+            <router-link to="/sign-in">
+              {{ $lang.auth.signUp.signInText }} 
+            </router-link>
           </a-row>
         </a-form-item>
       </a-form>
@@ -159,7 +162,7 @@ export default {
     compareToFirstPassword  (rule, value, callback) {
       const form = this.form;
       if (value && value !== form.getFieldValue('password')) {
-        callback('Two passwords that you enter is inconsistent!');
+        callback($lang.auth.signUp.inputs.confirmPassword.notSame);
       } else {
         callback();
       }

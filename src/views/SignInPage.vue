@@ -2,7 +2,9 @@
   <a-row>
     <a-col :span="7"></a-col>
     <a-col :span="10">
-      <a-divider>Sign in</a-divider>
+      <a-divider>
+        {{ $lang.auth.signIn.title }}
+      </a-divider>
       <a-form
         id="components-form-demo-normal-login"
         :form="form"
@@ -13,9 +15,9 @@
           <a-input
             v-decorator="[
               'email',
-              { rules: [{ required: true, message: 'Please input your email!' }] }
+              { rules: [{ required: true, message: $lang.auth.signIn.inputs.email.validation }] }
             ]"
-            placeholder="Email"
+            :placeholder="$lang.auth.signIn.inputs.email.placeholder"
           >
             <a-icon
               slot="prefix"
@@ -28,10 +30,10 @@
           <a-input
             v-decorator="[
               'password',
-              { rules: [{ required: true, message: 'Please input your Password!' }] }
+              { rules: [{ required: true, message: $lang.auth.signIn.inputs.password.validation }] }
             ]"
             type="password"
-            placeholder="Password"
+            :placeholder="$lang.auth.signIn.inputs.password.placeholder"
           >
             <a-icon
               slot="prefix"
@@ -48,11 +50,14 @@
               html-type="submit"
               class="login-form-button"
             >
-              Sign in
+              {{ $lang.auth.signIn.btnSignIn }}
             </a-button>
           </a-row>
           <a-row>
-            Or <router-link to="/sign-up">sign up now!</router-link>
+            {{ $lang.auth.signIn.or }}
+            <router-link to="/sign-up">
+              {{ $lang.auth.signIn.signUpText }}
+            </router-link>
           </a-row>
         </a-form-item>
       </a-form>

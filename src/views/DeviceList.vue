@@ -2,22 +2,22 @@
   <div class="devices-list">
     <a-alert
       v-if="showServiceSoonNotification"
-      message="SERVICE SOON"
-      description="Some devices need to have service soon. Don't forget about it!"
+      :message="$lang.deviceList.notifications.serviceSoon.title"
+      :description="$lang.deviceList.notifications.serviceSoon.description"
       type="warning"
       closable
     />
     <a-alert
       v-if="showCriticalNotification"
-      message="CRITICAL SITUATION"
-      description="Some devices have critical errors. Fix them as soon as possible!"
+      :message="$lang.deviceList.notifications.critical.title"
+      :description="$lang.deviceList.notifications.critical.description"
       type="error"
       closable
     />
     <a-alert
       v-if="showServiceOverdueNotification"
-      message="SERVICE OVERDUE"
-      description="Some devices have service overdue. Send them to service!"
+      :message="$lang.deviceList.notifications.serviceOverdue.title"
+      :description="$lang.deviceList.notifications.serviceOverdue.description"
       type="error"
       closable
     />

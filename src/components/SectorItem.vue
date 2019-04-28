@@ -15,18 +15,24 @@
       </a-col>
       <a-col :span="18" class="sector-info">
         <p>{{ sectorItem.name }}</p>
-        <p>{{ `STATUS: ${sectorItem.status.name}` }}</p>
+        <p>{{ `${$lang.devicePage.sectorInfo.status} ${sectorItem.status.name}` }}</p>
       </a-col>
     </a-row>
     <div class="temp-info">
       <a-row>
-        <a-col><p>{{ `Max T: ${sectorItem.maxTemperature} °C` }}</p></a-col>
+        <a-col>
+          <p>{{ `${$lang.devicePage.sectorInfo.maxT} ${sectorItem.maxTemperature} °C` }}</p>
+        </a-col>
       </a-row>
       <a-row>
-        <a-col><p>{{ `Min T: ${sectorItem.minTemperature} °C` }}</p></a-col>
+        <a-col>
+          <p>{{ `${$lang.devicePage.sectorInfo.minT} ${sectorItem.minTemperature} °C` }}</p>
+        </a-col>
       </a-row>
       <a-row>
-        <a-col><p>{{ `Current T: ${sectorItem.status.currentTemp} °C` }}</p></a-col>
+        <a-col>
+          <p>{{ `${$lang.devicePage.sectorInfo.currentT} ${sectorItem.status.currentTemp} °C` }}</p>
+        </a-col>
       </a-row>
     </div>
     <a-row :gutter="16">

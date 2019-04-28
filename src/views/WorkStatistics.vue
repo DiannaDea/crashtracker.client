@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Works statistics of device sectors since the last service</h3>
+    <h3>{{ $lang.stat.work.title }}</h3>
     <a-table
       :rowKey="statItem => statItem.uuid"
       :columns="columns" 
@@ -13,41 +13,6 @@
 import { mapState, mapActions } from 'vuex';
 import * as actionTypes from '../store/action-types';
 
-const columns = [{
-  title: 'Sector name',
-  dataIndex: 'name',
-}, {
-  title: 'UUID',
-  dataIndex: 'uuid',
-}, {
-  title: 'Min T°C',
-  dataIndex: 'minTemperature',
-}, {
-  title: 'Max T°C',
-  dataIndex: 'maxTemperature',
-}, {
-  title: 'Current T°C',
-  dataIndex: 'currentTemp',
-}, {
-  title: 'Avg T°C',
-  dataIndex: 'avgTemperature',
-}, {
-  title: 'Max access T°C',
-  dataIndex: 'maxAccessTemp',
-}, {
-  title: 'Min access T°C',
-  dataIndex: 'minAccessTempn',
-}, {
-  title: 'Critical situations',
-  dataIndex: 'criticalCount',
-}, {
-  title: 'Last time overdue',
-  dataIndex: 'lastTimeExcess',
-}, {
-  title: 'Setup date',
-  dataIndex: 'trackerSetupDate',
-}];
-
 export default {
   name: 'WorkStatistics',
   computed: {
@@ -57,7 +22,40 @@ export default {
   },
   data() {
     return {
-      columns,
+      columns: [{
+      title: this.$lang.stat.work.columns.name,
+      dataIndex: 'name',
+    }, {
+      title: this.$lang.stat.work.columns.uuid,
+      dataIndex: 'uuid',
+    }, {
+      title: this.$lang.stat.work.columns.minTemperature,
+      dataIndex: 'minTemperature',
+    }, {
+      title: this.$lang.stat.work.columns.maxTemperature,
+      dataIndex: 'maxTemperature',
+    }, {
+      title: this.$lang.stat.work.columns.currentTemp,
+      dataIndex: 'currentTemp',
+    }, {
+      title: this.$lang.stat.work.columns.avgTemperature,
+      dataIndex: 'avgTemperature',
+    }, {
+      title: this.$lang.stat.work.columns.maxAccessTemp,
+      dataIndex: 'maxAccessTemp',
+    }, {
+      title: this.$lang.stat.work.columns.minAccessTemp,
+      dataIndex: 'minAccessTemp',
+    }, {
+      title: this.$lang.stat.work.columns.criticalCount,
+      dataIndex: 'criticalCount',
+    }, {
+      title: this.$lang.stat.work.columns.lastTimeExcess,
+      dataIndex: 'lastTimeExcess',
+    }, {
+      title: this.$lang.stat.work.columns.trackerSetupDate,
+      dataIndex: 'trackerSetupDate',
+    }],
     };
   },
   methods: {

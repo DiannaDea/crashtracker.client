@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-divider>
-      <h2>Step 1: Create new device</h2>
+      <h2>{{ $lang.addDevice.device.title }}</h2>
     </a-divider>
     <div class="device-form-container">
       <a-form :form="form">
@@ -9,15 +9,15 @@
         <a-col :span="10">
           <!-- Name -->
           <a-form-item
-          label="Name"
+            :label="$lang.addDevice.device.inputs.name.name"
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-input
               :disabled="checkInputDisabled"
-              placeholder="Type your name here"
+              :placeholder="$lang.addDevice.device.inputs.name.placeholder"
               v-decorator="[
                 'name',
-                {rules: [{ required: true, message: 'Please input device name here!' }]}
+                {rules: [{ required: true, message: $lang.addDevice.device.inputs.name.validation }]}
               ]"
             />
           </a-form-item>
@@ -25,33 +25,37 @@
 
           <!-- Device type -->
           <a-form-item
-            label="Type"
+            :label="$lang.addDevice.device.inputs.type.name"
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-select
               :disabled="checkInputDisabled"
-              placeholder="Select a option and change input text above"
+              :placeholder="$lang.addDevice.device.inputs.type.placeholder"
               v-decorator="[
                 'type',
-                {rules: [{ required: true, message: 'Please select device type!' }]}
+                {rules: [{ required: true, message: $lang.addDevice.device.inputs.type.validation }]}
               ]">
-                <a-select-option value="fridge">fridge</a-select-option>
-                <a-select-option value="oven">oven</a-select-option>
+                <a-select-option value="fridge">
+                  {{ $lang.addDevice.device.inputs.type.fridgeType }}
+                </a-select-option>
+                <a-select-option value="oven">
+                  {{ $lang.addDevice.device.inputs.type.ovenType }}
+                </a-select-option>
             </a-select>
           </a-form-item>
           <!--    -->
 
           <!-- Model -->
           <a-form-item
-            label="Model"
+            :label="$lang.addDevice.device.inputs.model.name"
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-input
               :disabled="checkInputDisabled"
-              placeholder="Type device model here"
+              :placeholder="$lang.addDevice.device.inputs.model.placeholder"
               v-decorator="[
                 'model',
-                {rules: [{ required: true, message: 'Please input device model!' }]}
+                {rules: [{ required: true, message: $lang.addDevice.device.inputs.model.validation }]}
               ]"
             />
           </a-form-item>
@@ -59,12 +63,12 @@
 
           <!-- Description -->
           <a-form-item
-            label="Description"
+            :label="$lang.addDevice.device.inputs.description.name"
             :label-col="{ span: 6 }"
             :wrapper-col="{ span: 18 }">
             <a-textarea
               :disabled="checkInputDisabled"
-              placeholder="Type device description here" :rows="4"
+              :placeholder="$lang.addDevice.device.inputs.description.placeholder" :rows="4"
               v-decorator="[
                 'description'
               ]"/>
@@ -74,7 +78,7 @@
         <a-col :span="10">
           <!-- Service interval (hours)-->
           <a-form-item
-            label="Service interval"
+            :label="$lang.addDevice.device.inputs.serviceInterval.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -83,18 +87,18 @@
               :min="1"
               :disabled="checkInputDisabled"
               :initialValue="this.serviceInterval"
-              :formatter="value => `${value || this.serviceInterval}h`"
-              :parser="value => value.replace('h', '')"
+              :formatter="value => `${value || this.serviceInterval}${$lang.addDevice.device.inputs.serviceInterval.hours}`"
+              :parser="value => value.replace(lang.addDevice.inputs.serviceInterval.hours, '')"
               v-decorator="[
                 'serviceInterval',
-                { rules: [{ required: true, message: 'Please input service interval!' }]}
+                { rules: [{ required: true, message: $lang.addDevice.device.inputs.serviceInterval.validation }]}
               ]"/>
           </a-form-item>
           <!--    -->
 
           <!-- Notify before service (percent of serviceInterval) -->
           <a-form-item
-            label="Notify before service"
+            :label="$lang.addDevice.device.inputs.notifyBeforeService.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }">
             <a-input-number
@@ -108,24 +112,24 @@
               :initialValue="this.notifyBeforeService"
               v-decorator="[
                 'notifyBeforeService',
-                { rules: [{ required: true, message: 'Please input notify before service time!' }]}
+                { rules: [{ required: true, message: $lang.addDevice.device.inputs.notifyBeforeService.validation }]}
               ]"/>
           </a-form-item>
           <!--    -->
 
           <!-- Date last service -->
           <a-form-item
-            label="Date last service"
+            :label="$lang.addDevice.device.inputs.dateLastService.name"
             :label-col="{ span: 8 }"
             :wrapper-col="{ span: 16 }"
-            placeholder="Select date">
+            :placeholder="$lang.addDevice.device.inputs.dateLastService.placeholder">
             <a-date-picker
               :disabled="checkInputDisabled"
               :initialValue="this.dateLastService"
               class="form-extra-fields-data"
               v-decorator="[
                 'dateLastService',
-                { rules: [{ required: true, message: 'Please input last service date!' }]}
+                { rules: [{ required: true, message: $lang.addDevice.device.inputs.dateLastService.validation }]}
               ]"
             />
           </a-form-item>
@@ -135,7 +139,7 @@
             <a-button
               :disabled="checkInputDisabled"
               @click="submitDeviceInfo"
-              type="primary">SAVE</a-button>
+              type="primary">{{ $lang.addDevice.device.btnSave }}</a-button>
           </a-form-item>
         </a-col>
       </a-row>

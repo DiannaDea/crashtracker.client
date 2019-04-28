@@ -1,11 +1,11 @@
 <template>
   <div class="device-page">
     <a-divider>
-      <h3>Device information</h3>
+      <h3>{{$lang.devicePage.deviceTitle}}</h3>
     </a-divider>
     <DeviceInfo :device="device"/>
     <a-divider>
-      <h3>Sector information</h3>
+      <h3>{{$lang.devicePage.sectorTitle}}</h3>
     </a-divider>
     <SectorsList :deviceId="(device) ? device.id : null" :sectors="sectors" :sectorsLoaded="sectorsLoaded"/>
   </div>

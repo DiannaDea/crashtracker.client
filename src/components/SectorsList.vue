@@ -13,13 +13,13 @@
       </a-col>
     </a-row>
     <div class="sector-list-panel">
-      <a-row :gutter="16" type="flex" justify="end">
-        <a-col :span="3">
+      <a-row :gutter="14" type="flex" justify="end">
+        <a-col :span="4">
           <a-button @click="goToWorkStatisticsPage" type="dashed" block >
             {{$lang.devicePage.btnWorkStat}}
           </a-button>
         </a-col>
-        <a-col :span="3">
+        <a-col :span="4">
           <a-button @click="showModal" type="primary" block>
             {{$lang.devicePage.btnAddSector}}
           </a-button>
@@ -75,7 +75,8 @@ export default {
       this.showAddSectorModal = true;
     },
     addSector(sectorInfo) {
-      this.createDeviceSectors({
+      if (this.showAddSectorModal) {
+        this.createDeviceSectors({
         deviceId: this.deviceId,
         sectorTrackers: [ sectorInfo ],
       });
@@ -85,6 +86,7 @@ export default {
         type: 'success',
         title: 'Successfully created device sector!',
       });
+      }
     },
     handleCancelModal() {
       this.showAddSectorModal = false;

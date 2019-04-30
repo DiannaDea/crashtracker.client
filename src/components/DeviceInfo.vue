@@ -78,13 +78,13 @@
         <!-- -->
       </a-col>
     </a-row>
-     <a-row :gutter="16" class="sector-list-panel" type="flex" justify="end">
-      <a-col :span="3">
+     <a-row :gutter="14" class="sector-list-panel" type="flex" justify="end">
+      <a-col :span="4">
         <a-button block @click="submitDeleteDevice" type="danger">
           {{$lang.devicePage.btnDeleteDevice}}
         </a-button>
       </a-col>
-      <a-col :span="3">
+      <a-col :span="4">
         <a-button
           @click="goToServiceStatisticsPage"
           block 

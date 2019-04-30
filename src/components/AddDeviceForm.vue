@@ -124,6 +124,7 @@
             :wrapper-col="{ span: 16 }"
             :placeholder="$lang.addDevice.device.inputs.dateLastService.placeholder">
             <a-date-picker
+              :placeholder="$lang.addDevice.device.inputs.dateLastService.placeholder"
               :disabled="checkInputDisabled"
               :initialValue="this.dateLastService"
               class="form-extra-fields-data"

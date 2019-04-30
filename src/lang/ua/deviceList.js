@@ -10,7 +10,7 @@ module.exports = {
     },
   },
   searchTitle: 'Пошук...',
-  btnAddDevice: '+ СТВОРИТИ ПРИСТРІЙ',
+  btnAddDevice: '+ СТВОРИТИ',
   notifications: {
     serviceSoon: {
       title: 'СКОРО ОБСЛУГОВУВАННЯ',

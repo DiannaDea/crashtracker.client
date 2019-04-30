@@ -4,7 +4,7 @@
     <h1 v-if="devicesLoaded && !devices.length">No devices found</h1>
     <a-row
       v-else
-      :gutter="16">
+      :gutter="8">
       <a-col
         v-for="device in devices"
         :key="device.id"

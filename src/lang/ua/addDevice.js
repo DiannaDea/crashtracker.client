@@ -24,16 +24,16 @@ module.exports = {
         placeholder: 'Введіть опис пристрою',
       },
       serviceInterval: {
-        name: 'Інтервал обслуговування',
-        validation: 'Введіть інтервал обслуговування!',
+        name: 'Інтервал ТО',
+        validation: 'Введіть інтервал ТО!',
         hours: 'год',
       },
       notifyBeforeService: {
-        name: 'Повідомити перед обслуговуванням за',
-        validation: 'Будь ласка, введіть сповіщення перед обслуговуванням!',
+        name: 'Повідомити перед ТО',
+        validation: 'Будь ласка, введіть сповіщення перед ТО!',
       },
       dateLastService: {
-        name: 'Дата останнього обслуговування',
+        name: 'Дата останнього ТО',
         placeholder: 'Виберіть дату',
         validation: 'Введіть дату останнього обслуговування!',
       },
@@ -43,7 +43,7 @@ module.exports = {
   sectors: {
     title: 'Крок 2: Створення секторів пристроїв',
     btnAddSector: 'ДОДАТИ СЕКТОР',
-    btnSaveSector: 'ЗБЕРЕГТИ СЕКТОРИ',
+    btnSaveSector: 'ЗБЕРЕГТИ',
     tableColumns: {
       name: 'Назва сектора',
       number: 'Номер',
@@ -84,7 +84,7 @@ module.exports = {
         validation: 'Будь ласка, введіть дату встановлення датчика!',
       },
       timeNormAccess: {
-        name: 'Час перевищення норми T°C',
+        name: 'Час перевищення T°C',
         validation: 'Будь ласка, введіть час перевищення норм температур!',
         minutes: 'хв',
       },

@@ -33,6 +33,25 @@
           </a-form-item>
           <!--    -->
 
+          <!-- Sector location -->
+          <a-form-item
+            :label="$lang.addDevice.sectorModal.sectorInputs.location.name"
+            :label-col="{ span: 13 }"
+            :wrapper-col="{ span: 11 }">
+            <a-input
+              v-decorator="[
+                'location',
+                {rules: [{ 
+                  required: true, 
+                  message: $lang.addDevice.sectorModal.sectorInputs.location.validation 
+                }]}
+              ]"
+            />
+          </a-form-item>
+          <!--    -->
+        </a-col>
+
+        <a-col :span="12">
           <!-- Number -->
           <a-form-item
             :label="$lang.addDevice.sectorModal.sectorInputs.number.name"
@@ -48,36 +67,17 @@
           </a-form-item>
           <!--    -->
         </a-col>
-
-        <a-col :span="12">
-          <!-- Sector location -->
-          <a-form-item
-            :label="$lang.addDevice.sectorModal.sectorInputs.location.name"
-            :label-col="{ span: 8 }"
-            :wrapper-col="{ span: 16 }">
-            <a-input
-              v-decorator="[
-                'location',
-                {rules: [{ 
-                  required: true, 
-                  message: $lang.addDevice.sectorModal.sectorInputs.location.validation 
-                }]}
-              ]"
-            />
-          </a-form-item>
-          <!--    -->
-        </a-col>
       </a-row>
       <a-divider class="sector-modal-divider">
         {{ $lang.addDevice.sectorModal.sensorTitle }}
       </a-divider>
-      <a-row>
+      <a-row :gutter="20">
         <a-col :span="9">
           <!-- Max temperature -->
           <a-form-item
             :label="$lang.addDevice.sectorModal.sectorInputs.maxTemperature.name"
-            :label-col="{ span: 8 }"
-            :wrapper-col="{ span: 16 }">
+            :label-col="{ span: 12 }"
+            :wrapper-col="{ span: 12 }">
             <a-input-number
               :min="1"
               :initilValue="this.maxTemperature"
@@ -98,8 +98,8 @@
           <!-- Min temperature -->
           <a-form-item
             :label="$lang.addDevice.sectorModal.sectorInputs.minTemperature.name"
-            :label-col="{ span: 8 }"
-            :wrapper-col="{ span: 16 }">
+            :label-col="{ span: 12 }"
+            :wrapper-col="{ span: 12 }">
             <a-input-number
               :min="1"
               :initilValue="this.minTemperature"
@@ -121,8 +121,8 @@
           <!-- Date setup -->
           <a-form-item
             :label="$lang.addDevice.sectorModal.sectorInputs.setupDate.name"
-            :label-col="{ span: 12 }"
-            :wrapper-col="{ span: 12 }"
+            :label-col="{ span: 13 }"
+            :wrapper-col="{ span: 11 }"
             :placeholder="$lang.addDevice.sectorModal.sectorInputs.setupDate.placeholder">
             <a-date-picker
               v-decorator="[
@@ -141,8 +141,8 @@
           <!-- Time norm access -->
            <a-form-item
             :label="$lang.addDevice.sectorModal.sectorInputs.timeNormAccess.name"
-            :label-col="{ span: 12 }"
-            :wrapper-col="{ span: 12 }">
+            :label-col="{ span: 15 }"
+            :wrapper-col="{ span: 9 }">
             <a-input-number
               :min="1"
               :max="100"
@@ -236,7 +236,7 @@ export default {
   .add-sector-modal .sector-modal-divider {
     margin-bottom: 35px;
   }
-  .add-sector-modal .ant-form-item-label {
-    align-items: left;
+  .ant-form-item-label label {
+    float: left;
   }
 </style>

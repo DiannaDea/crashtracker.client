@@ -90,6 +90,7 @@ export default {
       this.modalVisible = true;
     },
     hideModal() {
+      console.log('=== hide modal');
       this.modalVisible = false;
     },
     addSector(sectorInfo) {

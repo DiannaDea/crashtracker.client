@@ -10,7 +10,7 @@ module.exports = {
     description: 'Опис:',
   },
   btnDeleteDevice: 'Видалити',
-  btnServiceStat: 'Сервісна статистика',
+  btnServiceStat: 'Історія ТО',
   sectorInfo: {
     status: 'СТАТУС: ',
     maxT: 'Макс. T°C: ',

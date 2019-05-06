@@ -7,7 +7,7 @@ const send = require('koa-send');
 const http = require('http');
 
 const app = new Koa();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 app.use(cors());
 app.use(koaStatic(path.resolve(__dirname, './dist')));

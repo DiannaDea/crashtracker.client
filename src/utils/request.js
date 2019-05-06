@@ -5,6 +5,7 @@ const { BASE_API_URL } = process.env || 'http://localhost:8000';
 
 const request = async (url, method, body = {}) => {
   try {
+    console.log('==== API URL', `${BASE_API_URL}/api${url}`);
     const response = await axios({
       method,
       url: `${BASE_API_URL}/api${url}`,

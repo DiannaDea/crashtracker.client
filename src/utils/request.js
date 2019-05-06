@@ -1,14 +1,14 @@
 import axios from 'axios';
 import Vue from 'vue';
 
-const BASE_URL = 'http://localhost';
-const PORT = '8000';
+const { API_URL } = process.env || 'http://localhost';
+const { PORT } = process.env || '8000';
 
 const request = async (url, method, body = {}) => {
   try {
     const response = await axios({
       method,
-      url: `${BASE_URL}:${PORT}/api${url}`,
+      url: `${API_URL}:${PORT}/api${url}`,
       data: body,
     });
     return response.data;

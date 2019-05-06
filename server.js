@@ -1,9 +1,22 @@
-const express = require('express');
-const serveStatic = require('serve-static');
+const Koa = require('koa');
+const respond = require('koa-respond');
+const koaStatic = require('koa-static');
+const path = require('path');
+const cors = require('@koa/cors');
+const send = require('koa-send');
+const http = require('http');
 
-const app = express();
-app.use(serveStatic(`${__dirname}/dist`));
-const port = process.env.PORT || 5000;
+const app = new Koa();
+const port = 8000;
 
-app.listen(port);
-console.log('server started ', port);
+app.use(cors());
+app.use(koaStatic(path.resolve(__dirname, './dist')));
+app.use(respond());
+
+app.use(async (ctx) => {
+  await send(ctx, 'index.html', { root: path.resolve(__dirname, './dist') });
+});
+
+http.createServer(app.callback()).listen(port);
+
+console.log(`Server running on port ${port}`);

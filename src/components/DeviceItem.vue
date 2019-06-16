@@ -17,7 +17,7 @@
       <a-col :span="18">
         <p>{{ deviceItem.name }}</p>
         <p>{{ `${$lang.deviceList.deviceItem.status} ${deviceItem.status.name}` }}</p>
-        <p>{{ `${$lang.deviceList.deviceItem.nextService} ${deviceItem.dateLastService}` }}</p>
+        <p>{{ `${$lang.deviceList.deviceItem.nextService} ${deviceItem.dateNextService}` }}</p>
       </a-col>
     </a-row>
     <a-row :gutter="16" class="device-control">
